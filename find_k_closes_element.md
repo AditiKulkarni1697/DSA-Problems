@@ -1,9 +1,13 @@
 Approach:
 we will find index from which the range will start. 
-- for that we will compare mid and mid+k. which ever is closer to x 
-- if m is closer to x then we do r = m
-- if m+k is closer to x then we do l = m+1
-- if both are closer we go for m instead of m+k
+- for that we will consider mid to be the start of range 
+- as the arr is in increasing order 
+- we check if x is present in between m and m+k. 
+- for that we substract mid from x and x from m+k
+- if m+k is nearer to x compared to m we will move l = m+1
+- else r = m
+
+- we find 
 
 
 /**
