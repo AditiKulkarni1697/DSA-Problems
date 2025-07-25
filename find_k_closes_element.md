@@ -3,6 +3,7 @@ we will find index from which the range will start.
 - for that we will compare mid and mid+k. which ever is closer to x 
 - if m is closer to x then we do r = m
 - if m+k is closer to x then we do l = m+1
+- if both are closer we go for m instead of m+k
 
 
 /**
