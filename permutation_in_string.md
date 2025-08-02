@@ -53,3 +53,56 @@ var checkInclusion = function(s1, s2) {
 
 
 };
+
+Or 
+
+TimeComplexity ; O(N)
+SpaceComplexity: O(26)
+
+For small a = s.charCodeAt(index)-97
+For captital A = s.charCodeAt(index)-65
+1. take two arrays with 26 indexes filled with 0
+2. iterate through s1 and (s2 until s1 length ) and fill the arrS and arrW with count of chars
+3. now, check if the arrS and arrW is same, if yes return true
+4. keep the window length constant and move the window to right side and check arrS and arrW again
+
+/**
+ * @param {string} s1
+ * @param {string} s2
+ * @return {boolean}
+ */
+var checkInclusion = function(s1, s2) {
+    let arrS = Array(26).fill(0)
+    let arrW = Array(26).fill(0)
+    let windowL = s1.length
+
+    for(let i=0;i<windowL;i++){
+        ++arrS[s1.charCodeAt(i)-97]
+        ++arrW[s2.charCodeAt(i)-97]
+    }
+
+    let k = 0
+    let j = windowL-1
+    while(j<s2.length){
+        if(isSameChars(arrS, arrW)){
+            return true
+        }else{
+            --arrW[s2.charCodeAt(k)-97]
+            ++k
+            
+            ++j
+            ++arrW[s2.charCodeAt(j)-97]
+        }
+    }
+    return false
+};
+
+function isSameChars(arrS, arrW){
+   
+for(let i=0;i<arrS.length;i++){
+    if(arrS[i]!=arrW[i]){
+        return false
+    }
+}
+return true
+}
