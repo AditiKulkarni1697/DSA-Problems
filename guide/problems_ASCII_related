@@ -1,0 +1,135 @@
+Problems involving **ASCII values** or **`charCodeAt`/`String.fromCharCode`** logic often appear in DSA to test understanding of strings, character manipulation, or optimization (without using built-in high-level functions like regex or maps).
+
+Here’s a curated list of **DSA problems where ASCII/code-point logic is useful or required**:
+
+---
+
+## 🔡 **Category: Character Frequency / Counting**
+
+### 1. **First Non-Repeating Character**
+
+* **Problem**: Given a string, return the first non-repeating character.
+* **ASCII Use**: Use a fixed-size array of size `26` for lowercase letters.
+* Example logic:
+
+  ```js
+  let count = new Array(26).fill(0);
+  for (let ch of s) {
+    count[ch.charCodeAt(0) - 'a'.charCodeAt(0)]++;
+  }
+  ```
+
+---
+
+### 2. **Check If Two Strings Are Anagrams**
+
+* **Problem**: Are two strings anagrams of each other?
+* **ASCII Use**: Use array of size 26 instead of `Map`.
+* Improves performance and space.
+
+---
+
+### 3. **Group Shifted Strings**
+
+* **Problem**: Group strings that belong to the same shifting sequence.
+* **ASCII Use**: Normalize all strings by computing the **difference from the first char** using `charCodeAt`.
+
+---
+
+## 🔁 **Category: Character Conversion**
+
+### 4. **Convert Uppercase to Lowercase (Without Built-in)**
+
+* `'A'.charCodeAt(0)` = 65
+* `'a'.charCodeAt(0)` = 97
+* So, lowercase = `uppercase + 32`
+
+```js
+let lower = String.fromCharCode(uppercase.charCodeAt(0) + 32);
+```
+
+---
+
+### 5. **Excel Column Title to Number**
+
+* **Problem**: Convert a column like `"AB"` to a number.
+* A → 1, B → 2, Z → 26, AA → 27, etc.
+* **ASCII Use**:
+
+```js
+let sum = 0;
+for (let ch of col) {
+  sum = sum * 26 + (ch.charCodeAt(0) - 'A'.charCodeAt(0) + 1);
+}
+```
+
+---
+
+## 🔤 **Category: Encoding / Decoding**
+
+### 6. **Caesar Cipher**
+
+* **Problem**: Shift each letter by k positions.
+* **ASCII Use**: Wrap around using modulo.
+
+---
+
+### 7. **Check if Pangram**
+
+* **Problem**: Is every letter `a-z` present?
+* **ASCII Use**: Track using boolean array of size 26, map `ch - 'a'`.
+
+---
+
+## 🔁 **Category: Palindrome / Character Analysis**
+
+### 8. **Check If Two Strings Are Isomorphic**
+
+* **Problem**: Every character of one string maps to another.
+* **ASCII Use**: Map each character's ASCII to its index or match.
+
+---
+
+### 9. **Valid Palindrome (Ignore Non-Alphanumeric)**
+
+* **Problem**: Check if a string is a valid palindrome.
+* **ASCII Use**: Skip characters not in ranges:
+
+```js
+if ((char >= 'a' && char <= 'z') || (char >= '0' && char <= '9')) { ... }
+```
+
+---
+
+## 🧠 BONUS CHALLENGES
+
+### 10. **Find Missing Letter in Alphabet**
+
+* Input: `“abcdf”`
+* Output: `'e'`
+* **ASCII Use**: Compare adjacent characters with `charCodeAt`.
+
+---
+
+### 11. **Rearrange Characters So No Two Adjacent Are Same**
+
+* Uses frequency count of characters.
+* Can implement using `Array(26)` and `char.charCodeAt()`.
+
+---
+
+### 12. **Character with Highest Frequency**
+
+* Again, `Array(26)` + `charCodeAt()` gives faster access than using `Map`.
+
+---
+
+## 💡 Tip: Use ASCII logic when:
+
+* You’re dealing with **only lowercase/uppercase letters**
+* Want to **optimize from O(n) with HashMap** to **O(1) with array of 26**
+* Need **low-level manipulation** of characters or encoding/decoding
+
+---
+
+Want me to bundle these into a **practice set with problem statements and solutions**?
